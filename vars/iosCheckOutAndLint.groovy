@@ -11,7 +11,8 @@ def call(Map config) {
     }
 
     stage ('Checkout') {
-        git credentialsId: credentialsId, url: gitUri, branch: gitBranch
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'redmine-jenkins', url: 'https://redmine.aliaslab.net/git/prj-00687.git/']]])
+        //git credentialsId: credentialsId, url: gitUri, branch: gitBranch
     }
 
     ansiColor {
